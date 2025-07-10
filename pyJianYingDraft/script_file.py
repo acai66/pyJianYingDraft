@@ -1,6 +1,7 @@
 import os
 import json
 import math
+import importlib.resources
 from copy import deepcopy
 
 from typing import Optional, Literal, Union, overload
@@ -195,7 +196,7 @@ class Script_file:
         self.imported_materials = {}
         self.imported_tracks = []
 
-        with open(os.path.join(os.path.dirname(__file__), self.TEMPLATE_FILE), "r", encoding="utf-8") as f:
+        with importlib.resources.files("pyJianYingDraft").joinpath(self.TEMPLATE_FILE).open("r", encoding="utf-8") as f:
             self.content = json.load(f)
 
     @staticmethod
